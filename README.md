@@ -4,7 +4,7 @@ Trying my hand at image color reduction, direct use: creating "painting by numbe
 
 ## Version one ... reduce test images to 10 basic colors
 
-I have chosen the following 10 basic colors typically found in children's watercolor sets around my place:
+I have chosen the following 12 basic colors typically found in children's watercolor sets around my place:
 - Yellow (255, 242, 0)
 - Orange (255, 127, 39)
 - Red (237, 28, 36)
