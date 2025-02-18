@@ -24,9 +24,19 @@ def euklideanDist(p1, p2):
     return np.sqrt(x**2+y**2+z**2)
 
 def colorMapping(sampleColor):
-    white = [255, 255, 255, 255]
-    outColor = white # white as default
-    dist = euklideanDist(sampleColor, white)
+    r = sampleColor[0]
+    g = sampleColor[1]
+    b = sampleColor[2]
+    avgVal = np.average(sampleColor[:3])
+    numGreys = 3
+    step = 225/(numGreys-1)
+    medianVals = [0] * numGreys
+    for i in range(numGreys):
+        medianVals[i] = 30 + i * step
+    median = medianVals[int((avgVal+step/2)/step)] 
+    greyScaleVal = [median, median, median, 255]
+    outColor = greyScaleVal # grey as default
+    dist = euklideanDist(sampleColor, greyScaleVal)
     for color in refPal[0] :
         newDist = euklideanDist(sampleColor, color)
         if newDist < dist:
