@@ -27,26 +27,34 @@ def colorMapping(sampleColor):
     r = sampleColor[0]
     g = sampleColor[1]
     b = sampleColor[2]
+#    a = 255
+    outColor = [sampleColor[0], sampleColor[1], sampleColor[2]]
     avgVal = np.average(sampleColor[:3])
+    #print("sample: ", sampleColor)
+    #print(avgVal)
     numGreys = 3
     step = 225/(numGreys-1)
     medianVals = [0] * numGreys
     for i in range(numGreys):
         medianVals[i] = 30 + i * step
     median = medianVals[int((avgVal+step/2)/step)] 
-    greyScaleVal = [median, median, median, 255]
+    greyScaleVal = [median, median, median]
     outColor = greyScaleVal # grey as default
     dist = euklideanDist(sampleColor, greyScaleVal)
     for color in refPal[0] :
         newDist = euklideanDist(sampleColor, color)
         if newDist < dist:
             dist = newDist
-            outColor = color
+            outColor = color[:3]
     return outColor
 
-for row in range(height):
-    for col in range(width):
-        outImg[row][col] = colorMapping(img[row][col])
+for row in range(int(height)):
+    for col in range(int(width)):
+        #print(row, col)
+        mappedColor = colorMapping(img[row][col])
+        #print(mappedColor)
+        outImg[row][col] = mappedColor
+        iio.imwrite('img/output.png', outImg)
 
 # output the image with reduced colors
 iio.imwrite('img/output.png', outImg)
