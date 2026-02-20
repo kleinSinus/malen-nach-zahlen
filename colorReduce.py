@@ -2,9 +2,11 @@ import imageio.v3 as iio
 import numpy as np
 from enum import Enum
 
+# Load an image. If none specified, load test image as fallback.
 img = iio.imread('img/testw100.png')
 prev = iio.imread('img/output.png')
 
+# get image shape
 rows = img.shape[0]
 cols = img.shape[1]
 
